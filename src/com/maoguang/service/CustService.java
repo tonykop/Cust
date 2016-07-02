@@ -10,4 +10,8 @@ public interface CustService {
 
 	List<Cust> getAllCust();
 
+	Cust findCustById(String id);
+
+	void updateCust(Cust cust);
+
 }

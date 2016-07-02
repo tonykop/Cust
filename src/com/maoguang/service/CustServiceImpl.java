@@ -22,4 +22,14 @@ public class CustServiceImpl implements CustService {
 		// TODO Auto-generated method stub
 		return dao.getAllCust();
 	}
+	@Override
+	public Cust findCustById(String id) {
+		// TODO Auto-generated method stub
+		return dao.findUserById(id);
+	}
+	@Override
+	public void updateCust(Cust cust) {
+		// TODO Auto-generated method stub
+		dao.updateCust(cust);
+	}
 }

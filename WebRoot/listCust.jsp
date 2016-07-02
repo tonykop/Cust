@@ -21,6 +21,7 @@
 			<th>客户爱好</th>
 			<th>客户类型</th>
 			<th>描述信息</th>
+			<td>修改</td>
 		</tr>
 		<c:forEach items="${requestScope.list}" var="cust">
 			<tr>
@@ -32,6 +33,7 @@
 				<td>${cust.preference}</td>
 				<td>${cust.type}</td>
 				<td>${cust.description}</td>
+				<td><a href="${pageContext.request.contextPath }/servlet/CustInfoServlet?id=${cust.id}">修改</a></td>
 
 			</tr>
 

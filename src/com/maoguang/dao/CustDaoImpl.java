@@ -54,4 +54,31 @@ public class CustDaoImpl implements CustDao {
 		}
 	}
 
+	@Override
+	public Cust findUserById(String id) {
+		String sql="select * from customer where id = ?";
+		try {
+			QueryRunner runner = new QueryRunner(DaoUtils.getSource());
+			return runner.query(sql, new BeanHandler<Cust>(Cust.class),id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+	}
+
+	@Override
+	public void updateCust(Cust cust) {
+		String sql="update customer set name=?,gender=?,birthday=?,cellphone=?,email=?,preference=?,type=?,description=? where id=?";
+		try {
+			QueryRunner runner = new QueryRunner(DaoUtils.getSource());
+			 runner.update(sql, cust.getName(), cust.getGender(), cust.getBirthday(), cust.getCellphone(),
+						cust.getEmail(), cust.getPreference(), cust.getType(), cust.getDescription(),cust.getId());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+	}
+
 }

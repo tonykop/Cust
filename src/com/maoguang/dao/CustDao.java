@@ -16,4 +16,8 @@ public interface CustDao {
 
 	List<Cust> getAllCust();
 
+	Cust findUserById(String id);
+
+	void updateCust(Cust cust);
+
 }
