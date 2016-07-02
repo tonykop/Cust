@@ -8,6 +8,8 @@
 </head>
 <body>
 <h1>我的网站</h1>
+<hr>
 <a href="${pageContext.request.contextPath }/addCust.jsp">添加客户</a>
+<a href="${pageContext.request.contextPath }/servlet/ListCustServlet">客户列表</a>
 </body>
 </html>

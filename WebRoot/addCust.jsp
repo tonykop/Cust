@@ -6,11 +6,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body style="text-align:center;">
+<body>
 	<h1>客户管理系统——添加客户</h1>
+	<hr>
 	<form
 		action="${pageContext.request.contextPath }/servlet/AddCustServlet" method="POST">
-		<table border="1">
+		<table border="1"  align="center">
 			<tr>
 				<td>客户姓名：</td>
 				<td><input type="text" name="name" /></td>

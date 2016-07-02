@@ -1,5 +1,7 @@
 package com.maoguang.dao;
 
+import java.util.List;
+
 import com.maoguang.domain.Cust;
 
 public interface CustDao {
@@ -11,5 +13,7 @@ public interface CustDao {
 	Cust findUserByName(String name);
 
      void addCust(Cust cust);
+
+	List<Cust> getAllCust();
 
 }
