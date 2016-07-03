@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import com.maoguang.domain.Cust;
 import com.maoguang.util.DaoUtils;
@@ -105,4 +106,33 @@ public class CustDaoImpl implements CustDao {
 				
 	}
 
+	@Override
+	public int getCountRow() {
+		String sql="select count(*) from customer";
+		try {
+			QueryRunner runner = new QueryRunner(DaoUtils.getSource());
+			return ((Long)runner.query(sql, new ScalarHandler())).intValue();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+	}
+
+	@Override
+	public List<Cust> getCustByPage(int from, int count) {
+		// TODO Auto-generated method stub
+		String sql="select * from customer limit ?,?";
+		try {
+			QueryRunner runner = new QueryRunner(DaoUtils.getSource());
+		 return	runner.query(sql, new BeanListHandler<Cust>(Cust.class),from,count);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+		
+	}
+
+	
 }

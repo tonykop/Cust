@@ -26,4 +26,8 @@ public interface CustDao {
 
 	void delCustByIDWithTrans(Connection conn,String id) throws SQLException;
 
+	int getCountRow();
+
+	List<Cust> getCustByPage(int from, int count);
+
 }

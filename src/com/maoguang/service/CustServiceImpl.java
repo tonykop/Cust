@@ -8,6 +8,7 @@ import org.apache.commons.dbutils.DbUtils;
 
 import com.maoguang.dao.CustDao;
 import com.maoguang.domain.Cust;
+import com.maoguang.domain.Page;
 import com.maoguang.factory.BasicFactory;
 import com.maoguang.util.DaoUtils;
 
@@ -59,5 +60,23 @@ public class CustServiceImpl implements CustService {
 			throw new RuntimeException(e);
 		}
 		
+	}
+	@Override
+	public Page pageCust(int thispage, int rowperpage) {
+		// TODO Auto-generated method stub
+		Page page=new Page();
+		page.setThispage(thispage);
+		page.setRowperpage(rowperpage);
+		int countrow=dao.getCountRow();
+		page.setCountrow(countrow);
+		int countpage=countrow/rowperpage+(countrow%rowperpage==0?0:1);
+		page.setCountpage(countpage);
+		page.setFirstpage(1);
+		page.setLastpage(countpage);
+		page.setPrepage(thispage==1?1:thispage-1);
+		page.setNextpage(thispage==countpage?countpage:thispage+1);
+		List<Cust> list=dao.getCustByPage((thispage-1)*rowperpage,rowperpage);
+		page.setList(list);
+		return page;
 	}
 }

@@ -11,5 +11,6 @@
 <hr>
 <a href="${pageContext.request.contextPath }/addCust.jsp">添加客户</a>
 <a href="${pageContext.request.contextPath }/servlet/ListCustServlet">客户列表</a>
+<a href="${pageContext.request.contextPath }/servlet/PageCustServlet?thispage=1">分页查询客户</a>
 </body>
 </html>
