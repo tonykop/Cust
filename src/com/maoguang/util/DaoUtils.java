@@ -19,7 +19,7 @@ public static DataSource getSource(){
 	return source;
 }
 
-public Connection getConn(){
+public static Connection getConn(){
 	
 	try {
 		return source.getConnection();

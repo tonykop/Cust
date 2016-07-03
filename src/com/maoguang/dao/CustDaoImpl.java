@@ -1,5 +1,6 @@
 package com.maoguang.dao;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -79,6 +80,29 @@ public class CustDaoImpl implements CustDao {
 			e.printStackTrace();
 			throw new RuntimeException();
 		}
+	}
+
+	@Override
+	public void delCust(String id) {
+		// TODO Auto-generated method stub
+		String sql="delete from customer where id=?";
+		try {
+			QueryRunner runner = new QueryRunner(DaoUtils.getSource());
+			 runner.update(sql, id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+	}
+
+	@Override
+	public void delCustByIDWithTrans(Connection conn, String id) throws SQLException {
+		// TODO Auto-generated method stub
+				String sql="delete from customer where id=?";
+					QueryRunner runner = new QueryRunner();
+					 runner.update(conn,sql, id);
+				
 	}
 
 }

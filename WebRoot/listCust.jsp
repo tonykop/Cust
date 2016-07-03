@@ -11,8 +11,10 @@
 <body>
 	<h1>客户列表</h1>
 	<hr>
+	<form action="${pageContext.request.contextPath}/servlet/BatchDelServlet" method="POST">
 	<table border="1" width="100%">
 		<tr>
+		    <th><input type="checkbox"/>全选</th>
 			<th>客户姓名</th>
 			<th>客户性别</th>
 			<th>出生日期</th>
@@ -22,9 +24,11 @@
 			<th>客户类型</th>
 			<th>描述信息</th>
 			<td>修改</td>
+			<td>删除</td>
 		</tr>
 		<c:forEach items="${requestScope.list}" var="cust">
 			<tr>
+			 <td><input type="checkbox" name="delId" value="${cust.id}"/></td>
 				<td>${cust.name}</td>
 				<td>${cust.gender}</td>
 				<td>${cust.birthday}</td>
@@ -34,10 +38,13 @@
 				<td>${cust.type}</td>
 				<td>${cust.description}</td>
 				<td><a href="${pageContext.request.contextPath }/servlet/CustInfoServlet?id=${cust.id}">修改</a></td>
+				<td><a href="${pageContext.request.contextPath }/servlet/DelCustServlet?id=${cust.id}">删除</a></td>
 
 			</tr>
 
 		</c:forEach>
 	</table>
+	<input type="submit" value="批量删除"/>
+	</form>
 </body>
 </html>

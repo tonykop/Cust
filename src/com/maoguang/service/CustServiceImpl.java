@@ -1,10 +1,15 @@
 package com.maoguang.service;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
+
+import org.apache.commons.dbutils.DbUtils;
 
 import com.maoguang.dao.CustDao;
 import com.maoguang.domain.Cust;
 import com.maoguang.factory.BasicFactory;
+import com.maoguang.util.DaoUtils;
 
 public class CustServiceImpl implements CustService {
 
@@ -31,5 +36,28 @@ public class CustServiceImpl implements CustService {
 	public void updateCust(Cust cust) {
 		// TODO Auto-generated method stub
 		dao.updateCust(cust);
+	}
+	@Override
+	public void delCust(String id) {
+		// TODO Auto-generated method stub
+		dao.delCust(id);
+	}
+	@Override
+	public void batchDel(String[] ids) {
+		// TODO Auto-generated method stub
+		Connection conn=DaoUtils.getConn();
+		try {
+			conn.setAutoCommit(false);
+			for(String id:ids){
+				dao.delCustByIDWithTrans(conn,id);
+			}
+			DbUtils.commitAndCloseQuietly(conn);
+		} catch (Exception e) {
+			DbUtils.rollbackAndCloseQuietly(conn);
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		
 	}
 }

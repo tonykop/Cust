@@ -14,4 +14,8 @@ public interface CustService {
 
 	void updateCust(Cust cust);
 
+	void delCust(String id);
+
+	void batchDel(String[] ids);
+
 }
